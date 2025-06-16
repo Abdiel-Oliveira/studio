@@ -1,0 +1,66 @@
+import type { Report } from '@/types';
+
+export const mockReports: Report[] = [
+  {
+    id: '1',
+    title: 'Daily Loss Overview',
+    description: 'Comprehensive daily report on overall losses.',
+    url: 'https://lookerstudio.google.com/s/example1',
+    platform: 'LookerStudio',
+    category: 'Daily Metrics',
+    tags: ['daily', 'overview', 'loss'],
+    imageUrl: 'https://placehold.co/600x400.png',
+  },
+  {
+    id: '2',
+    title: 'Regional Performance Q3',
+    description: 'Tableau dashboard showing regional loss performance for Q3.',
+    url: 'https://public.tableau.com/app/profile/example/viz/RegionalPerformanceQ3/Dashboard1',
+    platform: 'Tableau',
+    category: 'Regional Analysis',
+    tags: ['regional', 'tableau', 'performance'],
+    imageUrl: 'https://placehold.co/600x400.png',
+  },
+  {
+    id: '3',
+    title: 'Product Category Breakdown',
+    description: 'Looker Studio report detailing losses by product category.',
+    url: 'https://lookerstudio.google.com/s/example2',
+    platform: 'LookerStudio',
+    category: 'Product Insights',
+    tags: ['product', 'category', 'looker'],
+    imageUrl: 'https://placehold.co/600x400.png',
+  },
+  {
+    id: '4',
+    title: 'Weekly Trend Analysis',
+    description: 'Analysis of loss trends on a weekly basis.',
+    url: 'https://public.tableau.com/app/profile/example/viz/WeeklyTrends/Dashboard1',
+    platform: 'Tableau',
+    category: 'Trend Reports',
+    tags: ['weekly', 'trend', 'analysis'],
+    imageUrl: 'https://placehold.co/600x400.png',
+  },
+  {
+    id: '5',
+    title: 'Monthly Executive Summary',
+    description: 'High-level summary for executives on monthly losses.',
+    url: 'https://lookerstudio.google.com/s/example3',
+    platform: 'LookerStudio',
+    category: 'Executive Reports',
+    tags: ['monthly', 'executive', 'summary'],
+    imageUrl: 'https://placehold.co/600x400.png',
+  },
+  {
+    id: '6',
+    title: 'Anomaly Detection Report',
+    description: 'Tableau report highlighting unusual loss patterns.',
+    url: 'https://public.tableau.com/app/profile/example/viz/AnomalyDetection/Dashboard1',
+    platform: 'Tableau',
+    category: 'Advanced Analytics',
+    tags: ['anomaly', 'detection', 'advanced'],
+    imageUrl: 'https://placehold.co/600x400.png',
+  },
+];
+
+export const reportCategories = Array.from(new Set(mockReports.map(report => report.category)));
