@@ -5,16 +5,13 @@ import type { Report, ReportPlatform } from '@/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BarChart3, Presentation, ExternalLink, Loader2, AlertTriangle, Sparkles } from "lucide-react";
+import { BarChart3, Presentation, ExternalLink } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useTransition } from 'react';
-import { summarizeReport } from '@/ai/flows/summarize-report';
-import { useToast } from "@/hooks/use-toast";
 
 interface ReportCardProps {
   report: Report;
-  onSummaryUpdate: (reportId: string, summary: string) => void;
+  onSummaryUpdate: (reportId: string, summary: string) => void; // This prop might become unused or repurposed if AI summary is fully removed
 }
 
 const PlatformIcon = ({ platform }: { platform: ReportPlatform }) => {
@@ -27,41 +24,7 @@ const PlatformIcon = ({ platform }: { platform: ReportPlatform }) => {
   return null;
 };
 
-export function ReportCard({ report, onSummaryUpdate }: ReportCardProps) {
-  const [isSummaryLoading, startSummaryTransition] = useTransition();
-  const [currentSummary, setCurrentSummary] = useState(report.aiSummary || report.description);
-  const [summaryError, setSummaryError] = useState<string | null>(null);
-  const { toast } = useToast();
-
-  const handleGenerateSummary = () => {
-    setSummaryError(null);
-    startSummaryTransition(async () => {
-      try {
-        const result = await summarizeReport({ reportLink: report.url });
-        if (result.summary) {
-          setCurrentSummary(result.summary);
-          onSummaryUpdate(report.id, result.summary);
-        } else {
-          setSummaryError("AI could not generate a summary for this report.");
-          toast({
-            title: "Summarization Error",
-            description: "AI could not generate a summary for this report.",
-            variant: "destructive",
-          });
-        }
-      } catch (error) {
-        console.error("Error generating summary:", error);
-        const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
-        setSummaryError(`Failed to generate summary: ${errorMessage}`);
-        toast({
-          title: "Summarization Failed",
-          description: `Could not generate summary: ${errorMessage}`,
-          variant: "destructive",
-        });
-      }
-    });
-  };
-
+export function ReportCard({ report }: ReportCardProps) {
   return (
     <Card className="flex flex-col overflow-hidden h-full shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg">
       <CardHeader className="pb-2">
@@ -85,31 +48,10 @@ export function ReportCard({ report, onSummaryUpdate }: ReportCardProps) {
       </CardHeader>
       <CardContent className="flex-grow pb-2">
         <CardDescription className="text-sm min-h-[40px]">
-          {currentSummary}
+          {report.description} 
         </CardDescription>
-        {summaryError && (
-          <p className="text-xs text-destructive mt-2 flex items-center">
-            <AlertTriangle className="h-4 w-4 mr-1" /> {summaryError}
-          </p>
-        )}
       </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-2 pt-2">
-        <Button
-          onClick={handleGenerateSummary}
-          disabled={isSummaryLoading}
-          variant="outline"
-          size="sm"
-          className="w-full sm:w-auto transition-colors duration-300 group"
-        >
-          {isSummaryLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <>
-              <Sparkles className="h-4 w-4 mr-2 group-hover:text-accent transition-colors duration-300" />
-              AI Summary
-            </>
-          )}
-        </Button>
+      <CardFooter className="flex flex-col sm:flex-row justify-end items-center gap-2 pt-2">
         <Button asChild size="sm" className="w-full sm:w-auto bg-primary hover:bg-primary/90 transition-colors duration-300 group">
           <Link href={report.url} target="_blank" rel="noopener noreferrer">
             Open Report
