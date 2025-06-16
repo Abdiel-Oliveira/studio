@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 264 6% 17%; /* Custom dark cool gray */
-    --foreground: 206 25% 90%; /* Light gray, almost white */
+    --background: 264 6% 17%; /* Custom dark cool gray - Page background */
+    --foreground: 206 25% 90%; /* Light gray, almost white - Page text */
 
-    --card: 264 6% 20%; /* Slightly lighter than new background */
-    --card-foreground: 206 25% 90%; /* Light gray */
+    --card: 264 6% 20%; 
+    --card-foreground: 206 25% 90%;
 
-    --popover: 264 6% 15%; /* Slightly darker than new background */
-    --popover-foreground: 206 25% 90%; /* Light gray */
+    --popover: 264 6% 15%; 
+    --popover-foreground: 206 25% 90%;
 
-    --primary: 231 48% 55%; /* Slightly brighter Deep Blue for dark mode */
-    --primary-foreground: 0 0% 98%; /* White */
+    --primary: 231 48% 55%; 
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 264 5% 32%; /* Dark secondary, adjusted for new background */
-    --secondary-foreground: 206 25% 90%; /* Light gray */
+    --secondary: 264 5% 32%; 
+    --secondary-foreground: 206 25% 90%;
 
-    --muted: 264 5% 27%; /* Dark muted, adjusted for new background */
-    --muted-foreground: 206 10% 60%; /* Lighter muted text ("meio branco") */
+    --muted: 264 5% 27%; 
+    --muted-foreground: 206 10% 60%;
 
-    --accent: 231 48% 55%; /* Changed to match primary color */
-    --accent-foreground: 0 0% 98%; /* White (same as primary-foreground) */
+    --accent: 231 48% 55%; /* Matches primary color */
+    --accent-foreground: 0 0% 98%; 
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 264 5% 27%; /* Dark border, adjusted for new background */
-    --input: 264 5% 25%; /* Dark input background, adjusted for new background */
-    --ring: 231 48% 55%; /* Changed to match new accent color */
+    --border: 264 5% 27%; /* Page border */
+    --input: 264 5% 25%; 
+    --ring: 231 48% 55%; 
     
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -39,45 +39,45 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    /* Dark sidebar variables (originally from .dark) */
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark sidebar variables - Updated */
+    --sidebar-background: 264 6% 17%; /* Matches page background */
+    --sidebar-foreground: 206 25% 90%; /* Matches page foreground */
+    --sidebar-primary: 231 48% 55%; /* Matches page primary */
+    --sidebar-primary-foreground: 0 0% 98%; /* Matches page primary-foreground */
+    --sidebar-accent: 264 6% 22%; /* Slightly lighter than sidebar background for hover */
+    --sidebar-accent-foreground: 206 25% 90%; /* Matches page foreground */
+    --sidebar-border: 264 5% 27%; /* Matches page border */
+    --sidebar-ring: 231 48% 55%; /* Matches page ring */
   }
 
-  .dark { /* This class will now apply the original light theme */
-    --background: 206 25% 93%; /* Light Gray #ECEFF1 */
-    --foreground: 231 48% 18%; /* Darker shade of Deep Blue for text */
+  .dark { /* This class will now apply the original light theme - Updated sidebar vars */
+    --background: 206 25% 93%; /* Light Gray #ECEFF1 - Page background */
+    --foreground: 231 48% 18%; /* Darker shade of Deep Blue for text - Page text */
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 231 48% 18%; /* Darker shade of Deep Blue */
+    --card: 0 0% 100%; 
+    --card-foreground: 231 48% 18%;
 
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 231 48% 18%; /* Darker shade of Deep Blue */
+    --popover: 0 0% 100%; 
+    --popover-foreground: 231 48% 18%;
 
-    --primary: 231 48% 48%; /* Deep Blue #3F51B5 */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 231 48% 48%; 
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 231 30% 85%; /* Lighter blue for secondary elements */
-    --secondary-foreground: 231 48% 18%; /* Darker Deep Blue on light blue */
+    --secondary: 231 30% 85%; 
+    --secondary-foreground: 231 48% 18%;
 
-    --muted: 206 20% 88%; /* Muted version of background */
-    --muted-foreground: 206 10% 45%; /* Muted text color */
+    --muted: 206 20% 88%; 
+    --muted-foreground: 206 10% 45%;
 
-    --accent: 231 48% 48%; /* Changed to match primary color for light theme */
-    --accent-foreground: 0 0% 100%; /* White, for text on accent */
+    --accent: 231 48% 48%; 
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 206 15% 85%; /* Slightly darker than background for subtle borders */
-    --input: 0 0% 100%; /* White for input background */
-    --ring: 231 48% 48%; /* Changed to match new accent color for light theme */
+    --border: 206 15% 85%; /* Page border */
+    --input: 0 0% 100%; 
+    --ring: 231 48% 48%; 
     
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -85,15 +85,15 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    /* Light sidebar variables (originally from :root) */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Light sidebar variables - Updated */
+    --sidebar-background: 206 25% 93%; /* Matches light theme page background */
+    --sidebar-foreground: 231 48% 18%; /* Matches light theme page foreground */
+    --sidebar-primary: 231 48% 48%; /* Matches light theme page primary */
+    --sidebar-primary-foreground: 0 0% 100%; /* Matches light theme page primary-foreground */
+    --sidebar-accent: 206 20% 88%; /* Uses light theme muted color for hover */
+    --sidebar-accent-foreground: 231 48% 18%; /* Matches light theme page foreground */
+    --sidebar-border: 206 15% 85%; /* Matches light theme page border */
+    --sidebar-ring: 231 48% 48%; /* Matches light theme page ring */
   }
 }
 
