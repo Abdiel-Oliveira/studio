@@ -4,22 +4,22 @@
 
 @layer base {
   :root {
-    --background: 230 20% 10%; /* Very dark blue-gray */
+    --background: 264 6% 17%; /* Custom dark cool gray */
     --foreground: 206 25% 90%; /* Light gray, almost white */
 
-    --card: 230 20% 13%; /* Slightly lighter than dark background */
+    --card: 264 6% 20%; /* Slightly lighter than new background */
     --card-foreground: 206 25% 90%; /* Light gray */
 
-    --popover: 230 20% 8%; /* Even darker popover */
+    --popover: 264 6% 15%; /* Slightly darker than new background */
     --popover-foreground: 206 25% 90%; /* Light gray */
 
     --primary: 231 48% 55%; /* Slightly brighter Deep Blue for dark mode */
     --primary-foreground: 0 0% 98%; /* White */
 
-    --secondary: 230 15% 25%; /* Dark secondary */
+    --secondary: 264 5% 32%; /* Dark secondary, adjusted for new background */
     --secondary-foreground: 206 25% 90%; /* Light gray */
 
-    --muted: 230 15% 20%; /* Dark muted */
+    --muted: 264 5% 27%; /* Dark muted, adjusted for new background */
     --muted-foreground: 206 10% 60%; /* Lighter muted text ("meio branco") */
 
     --accent: 231 48% 55%; /* Changed to match primary color */
@@ -28,8 +28,8 @@
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 230 15% 20%; /* Dark border */
-    --input: 230 15% 18%; /* Dark input background */
+    --border: 264 5% 27%; /* Dark border, adjusted for new background */
+    --input: 264 5% 25%; /* Dark input background, adjusted for new background */
     --ring: 231 48% 55%; /* Changed to match new accent color */
     
     --chart-1: 12 76% 61%;
