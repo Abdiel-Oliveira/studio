@@ -8,24 +8,21 @@ import { ReportCard } from '@/components/ReportCard';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Filter, LayoutDashboard, X } from 'lucide-react';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 
 export default function LossInsightsHubPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [reports, setReports] = useState<Report[]>(mockReports);
   const [mounted, setMounted] = useState(false);
+  
+  // Correctly call useSidebar at the top level
+  const sidebarContext = useSidebar();
+  const isMobile = sidebarContext ? sidebarContext.isMobile : undefined; // Handle potential null if context not ready
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
 
   const handleSummaryUpdate = (reportId: string, summary: string) => {
     setReports(prevReports => 
@@ -47,10 +44,9 @@ export default function LossInsightsHubPage() {
     });
   }, [searchTerm, selectedCategory, reports]);
 
-  if (!mounted) {
-    // Render a loading state or null to avoid hydration mismatch
+  if (!mounted || isMobile === undefined) { // Also wait for isMobile to be defined
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-8">
+      <div className="flex flex-col items-center justify-center h-full p-8 bg-background">
         <LayoutDashboard className="h-16 w-16 text-primary mb-4 animate-pulse" />
         <h1 className="text-4xl font-bold font-headline text-primary">Loading Loss Insights Hub...</h1>
       </div>
@@ -58,32 +54,32 @@ export default function LossInsightsHubPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="bg-primary text-primary-foreground shadow-md sticky top-0 z-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center">
-          <div className="flex items-center mb-4 sm:mb-0">
-            <LayoutDashboard className="h-8 w-8 mr-3" />
-            <h1 className="text-2xl sm:text-3xl font-bold font-headline">Loss Insights Hub</h1>
+    <div className="flex flex-col h-full bg-background">
+      <header className="sticky top-0 z-40 bg-background border-b border-border flex-shrink-0">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+             {isMobile && <SidebarTrigger className="text-foreground"/>}
+            <h1 className="text-xl font-semibold text-foreground">Reports Dashboard</h1>
           </div>
-          <div className="relative w-full sm:w-auto max-w-md">
+          <div className="relative w-full sm:w-auto max-w-xs sm:max-w-sm md:max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="search"
               placeholder="Search reports..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full bg-primary-foreground text-foreground border-border focus:ring-accent"
+              className="pl-10 pr-4 py-2 w-full bg-card text-foreground border-border focus:ring-accent"
               aria-label="Search reports"
             />
           </div>
         </div>
       </header>
 
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-y-auto">
         <div className="mb-8 p-4 bg-card rounded-lg shadow">
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="flex items-center text-lg font-semibold text-primary">
-              <Filter className="h-5 w-5 mr-2" />
+            <div className="flex items-center text-lg font-semibold text-card-foreground">
+              <Filter className="h-5 w-5 mr-2 text-primary" />
               <span>Filter by Category</span>
             </div>
             <div className="flex flex-wrap gap-2 items-center">
@@ -127,10 +123,6 @@ export default function LossInsightsHubPage() {
           </div>
         )}
       </main>
-
-      <footer className="bg-card text-card-foreground py-6 text-center border-t">
-        <p className="text-sm">&copy; {new Date().getFullYear()} Loss Insights Hub. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
